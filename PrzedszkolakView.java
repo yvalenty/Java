@@ -7,11 +7,7 @@ public class PrzedszkolakView extends GraczView {
     JPanel mpan, pan1, pan2, pan3, pan4;
     ImageIcon imageIcon, imageIcon2;
     JLabel picLabel, picLabel2;
-    JButton button1, button2;
-    JLabel selN1, selN2, lw;
     //Elementy dla dla gameXO
-    JButton[] buttons;
-    JFrame frameXO;
     JPanel mainPanel;
 
     public void gameCoin(){

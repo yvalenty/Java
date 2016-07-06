@@ -1,12 +1,7 @@
 import java.util.Random;
 
 public class Przedszkolak extends Gracz {
-    int c1[]={0,1,2},c2[]={3,4,5},c3[]={6,7,8},c4[]={0,3,6},c5[]={1,4,7},c6[]={2,5,8},c7[]={0,4,8},c8[]={2,4,6};
-    int[][] winCombo = {c1,c2,c3,c4,c5,c6,c7,c8};
-    int[] gameArea ={0,0,0,0,0,0,0,0,0};
-    int gcmax=2, gcmin=1, selectgc1, selectgc2, repeats, freecell, gSelect, ret, cSelect;
-    boolean moveMaked, endGame;
-    int selectedWinCombo, playedGames;
+
     public Przedszkolak (String s, String ss) {
         name = s;
         surname=ss;
@@ -17,6 +12,8 @@ public class Przedszkolak extends Gracz {
     }
 
     public void gameXO(){
+        gcmax=2;
+        gcmin=1;
         freecell=9;
         moveMaked=false;
         endGame=false;

@@ -2,9 +2,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StudentController extends UczenController {
-    private Student model;
-    private StudentView view;
-    public StudentController(Student smodel, StudentView sview) {
+    private Gracz model;
+    private GraczView view;
+    public StudentController(Gracz smodel, GraczView sview) {
         super(smodel, sview);
         this.model=smodel;
         this.view=sview;

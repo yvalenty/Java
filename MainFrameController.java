@@ -4,12 +4,8 @@ public class MainFrameController {
     private MainFrame model;
     private MainFrameView view;
     Listener gSelect;
-    PrzedszkolakController pcontroller;
-    PrzedszkolakView pview;
-    UczenController ucontroller;
-    UczenView uview;
-    StudentController scontroller;
-    StudentView sview;
+    GraczView gamerview;
+
     WindowListener wListen;
 
     public MainFrameController(MainFrame model, MainFrameView view){
@@ -17,12 +13,54 @@ public class MainFrameController {
         this.view=view;
     }
 
+    public Gracz fabryka(int n){
+        Gracz g=null;
+        if(n==0){
+            g=new Przedszkolak(model.getName(),model.getSurname());
+        }
+        else if(n==1){
+            g=new Uczen(model.getName(),model.getSurname());
+        }
+        else if(n==2){
+            g=new Student(model.getName(),model.getSurname());
+        }
+        return g;
+    }
+
+    public GraczView fabrykaWidokow(int n){
+        GraczView g=null;
+        if(n==0){
+            g=new PrzedszkolakView();
+        }
+        else if(n==1){
+            g=new UczenView();
+        }
+        else if(n==2){
+            g=new StudentView();
+        }
+        return g;
+    }
+
+    public GraczController fabrykaKontolerow(int n, Gracz gm, GraczView gv){
+        GraczController g=null;
+        if(n==0){
+            g=new PrzedszkolakController(gm, gv);
+        }
+        else if(n==1){
+            g=new UczenController(gm, gv);
+        }
+        else if(n==2){
+            g=new StudentController(gm, gv);
+        }
+        return g;
+    }
+
     public void MainView(){
         gSelect=new Listener();
         wListen=new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                pview.gameWindow.setVisible(false);
+                gamerview.gameWindow.setVisible(false);
                 view.pan4.setVisible(false);
                 view.mainPanel.setVisible(true);
                 view.pan3.setVisible(true);
@@ -59,90 +97,46 @@ public class MainFrameController {
                     model.setCharge(Double.parseDouble(view.wp.getText()));
                     if(model.getRepeats()==0) throw new Exception();//zakaz wprowadzenia 0 powtórzeń
                     view.startInfo("Zaczynamy grę\n");
-                    if(model.getGamer()==0) {
-                        Przedszkolak prz = new Przedszkolak(model.getName(), model.getSurname());
-                        prz.repeats=model.getRepeats();
-                        prz.setResultsTable();
-                        model.Gamer = prz;
-                        pview=new PrzedszkolakView();
-                        pcontroller = new PrzedszkolakController(prz, pview);
-                        if(model.getGame()==0) {
-                            pview.gameCoin();
-                            pcontroller.gameCoin();
-                        }
-                        if(model.getGame()==3) {
-                            prz.gameXO();
-                            pview.gameXO();
-                            pcontroller.gameXO();
-                            pview.frameXO.addWindowListener(wListen);
-                        }
-                    }
-                    if(model.getGamer()==1) {
-                        Uczen ucz = new Uczen(model.getName(), model.getSurname());
-                        ucz.repeats=model.getRepeats();
-                        ucz.setResultsTable();
-                        model.Gamer = ucz;
-                        uview=new UczenView();
-                        ucontroller = new UczenController(ucz, uview);
-                        pview=uview;
-                        if (model.getGame() == 0) {
-                            uview.gameCoin();
-                            ucontroller.gameCoin();
-                        }
-                        if (model.getGame() == 1) {
-                            ucz.gameKNP();
-                            uview.gameKNP();
-                            ucontroller.gameKNP();
-                        }
-                        if(model.getGame()==3) {
-                            ucz.gameXO();
-                            uview.gameXO();
-                            ucontroller.gameXO();
-                            uview.frameXO.addWindowListener(wListen);
-                        }
 
+                    Gracz gamer=fabryka(model.getGamer());
+                    gamerview=fabrykaWidokow(model.getGamer());
+                    GraczController gamercontroller=fabrykaKontolerow(model.getGamer(), gamer, gamerview);
+                    gamer.repeats=model.getRepeats();
+                    gamer.setResultsTable();
+                    model.Gamer=gamer;
+
+                    if(model.getGame()==0) {
+                        gamerview.gameCoin();
+                        gamercontroller.gameCoin();
                     }
-                    if(model.getGamer()==2) {
-                        Student std = new Student(model.getName(), model.getSurname());
-                        std.repeats=model.getRepeats();
-                        std.setResultsTable();
-                        model.Gamer = std;
-                        sview=new StudentView();
-                        scontroller = new StudentController(std, sview);
-                        uview=sview;
-                        pview=uview;
-                        if (model.getGame() == 0) {
-                            sview.gameCoin();
-                            scontroller.gameCoin();
-                        }
-                        if (model.getGame() == 1) {
-                            std.gameKNP();
-                            sview.gameKNP();
-                            scontroller.gameKNP();
-                        }
-                        if (model.getGame() == 2) {
-                            std.gameDeer();
-                            sview.gameDeer();
-                            scontroller.gameDeer();
-                        }
-                        if(model.getGame()==3) {
-                            std.gameXO();
-                            sview.gameXO();
-                            scontroller.gameXO();
-                            sview.frameXO.addWindowListener(wListen);
-                        }
+                    else if (model.getGame() == 1) {
+                        gamer.gameKNP();
+                        gamerview.gameKNP();
+                        gamercontroller.gameKNP();
                     }
+                    else if (model.getGame() == 2) {
+                        gamer.gameDeer();
+                        gamerview.gameDeer();
+                        gamercontroller.gameDeer();
+                    }
+                    else if(model.getGame()==3) {
+                        gamer.gameXO();
+                        gamerview.gameXO();
+                        gamercontroller.gameXO();
+                        gamerview.frameXO.addWindowListener(wListen);
+                    }
+
 
                     //model.Gamer.startGame(model.getGame());
                     view.mainPanel.setVisible(false);
                     view.pan3.setVisible(false);
                     view.pan4.add(view.ex);
-                    view.frame.add(pview.gameWindow);
-                    pview.gameWindow.add(view.pan4);
+                    view.frame.add(gamerview.gameWindow);
+                    gamerview.gameWindow.add(view.pan4);
                     view.pan4.setVisible(true);
                     view.ex.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            pview.gameWindow.setVisible(false);
+                            gamerview.gameWindow.setVisible(false);
                             view.pan4.setVisible(false);
                             view.mainPanel.setVisible(true);
                             view.pan3.setVisible(true);

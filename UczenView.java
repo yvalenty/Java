@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UczenView extends PrzedszkolakView {
-    JButton button3;
     ImageIcon imageIcon3;
     public void gameKNP(){
         mpan = new JPanel();

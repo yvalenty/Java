@@ -12,8 +12,9 @@ public class Singleton {
     private Singleton() {
     }
 
-    protected static void demoMethod( ) throws IOException {
+    protected static void playMusic( ) throws IOException {
         try {
+
             File soundFile = new File("src/background.wav");
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundFile);
             Clip clip = AudioSystem.getClip();

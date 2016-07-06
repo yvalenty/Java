@@ -1,11 +1,21 @@
 import javax.swing.*;
 
-/**
- * Created by Slavik on 05.07.2016.
- */
 public abstract class GraczView {
     JPanel gameWindow=new JPanel();
+    JButton button1, button2, button3;
+    JLabel selN1, selN2, lw;
+    JButton[] buttons;
+    JFrame frameXO;
+
     public abstract void gameCoin();
+
+    public abstract void endGame(String wygrales);
+
+    public abstract void gameXO();
+
+    public void gameKNP(){}
+
+    public void gameDeer(){}
     /*public void showResults(){
         JTextArea textArea = new JTextArea(6, 18);
         textArea.setText("-----------Wyniki-----------\n" + "Gracz1                Gracz2\n");

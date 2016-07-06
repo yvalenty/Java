@@ -1,10 +1,10 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class PrzedszkolakController extends GraczController {
-    private Przedszkolak model;
-    private PrzedszkolakView view;
+    private Gracz model;
+    private GraczView view;
 
-    public PrzedszkolakController(Przedszkolak pmodel, PrzedszkolakView pview) {
+    public PrzedszkolakController(Gracz pmodel, GraczView pview) {
         this.model=pmodel;
         this.view=pview;
     }

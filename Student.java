@@ -4,7 +4,7 @@ public class Student extends Uczen {
         super(s, ss);
         allowedTime=6;
     }
-    
+
     public void gameDeer(){
         gcrecords =new int[repeats+1][2];
         gcmax=2;
