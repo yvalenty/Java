@@ -2,7 +2,7 @@ public class Student extends Uczen {
     
     public Student(String s, String ss) {
         super(s, ss);
-        allowedTime=6;
+        allowedTime=4;
     }
 
     public void gameDeer(){

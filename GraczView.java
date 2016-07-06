@@ -7,6 +7,11 @@ public abstract class GraczView {
     JButton[] buttons;
     JFrame frameXO;
 
+    public void timeEnd(){
+        JOptionPane.showMessageDialog(null, "Nie wolno grać tak długo. Program kończy działanie");
+        System.exit(0);
+    }
+
     public abstract void gameCoin();
 
     public abstract void endGame(String n);

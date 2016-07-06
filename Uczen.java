@@ -2,7 +2,7 @@ public class Uczen extends Przedszkolak {
     
     public Uczen(String s, String ss) {
         super(s, ss);
-        allowedTime=4;
+        allowedTime=3;
     }
     
     public void gameKNP(){

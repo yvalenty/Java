@@ -6,7 +6,7 @@ public class MainFrameController {
     Listener gSelect;
     GraczView gamerview;
     WindowListener wListen;
-
+    Thread thread;
     public MainFrameController(MainFrame model, MainFrameView view){
         this.model=model;
         this.view=view;
@@ -65,6 +65,7 @@ public class MainFrameController {
                 view.pan3.setVisible(true);
                 view.frame.setEnabled(true);
                 view.frame.setVisible(true);
+                thread.interrupt();
 
             }
             @Override
@@ -93,8 +94,6 @@ public class MainFrameController {
                     model.setRepeats(Integer.parseInt(view.rep.getText().trim()));
                     model.setCharge(Double.parseDouble(view.wp.getText()));
                     if(model.getRepeats()==0) throw new Exception();//zakaz wprowadzenia 0 powtórzeń
-                    view.startInfo("Zaczynamy grę\n");
-
                     Gracz gamer=fabryka(model.getGamer());
                     gamerview=fabrykaWidokow(model.getGamer());
                     GraczController gamercontroller=fabrykaKontolerow(model.getGamer(), gamer, gamerview);
@@ -102,7 +101,10 @@ public class MainFrameController {
                     gamer.payment=model.getCharge();
                     gamer.setResultsTable();
                     model.Gamer=gamer;
-
+                    view.startInfo("Zaczynamy grę\nMasz czas: " + gamer.allowedTime + " minuty");
+                    Timeout timer = new Timeout(gamer, gamerview);
+                    thread = new Thread(timer);
+                    thread.start();
                     if(model.getGame()==0) {
                         gamerview.gameCoin();
                         gamercontroller.gameCoin();
@@ -136,6 +138,7 @@ public class MainFrameController {
                             view.pan4.setVisible(false);
                             view.mainPanel.setVisible(true);
                             view.pan3.setVisible(true);
+                            thread.interrupt();
                         }
                     });
 
