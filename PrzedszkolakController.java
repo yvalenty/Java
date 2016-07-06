@@ -11,7 +11,6 @@ public class PrzedszkolakController extends GraczController {
 
     public void gameCoin(){
         abstract class buttonList implements ActionListener{}
-
         buttonList bListner;
         bListner=new buttonList() {
             int i=0;
@@ -38,19 +37,19 @@ public class PrzedszkolakController extends GraczController {
                     model.gcrecords[i][0] = 1;
                     model.gcrecords[i][1] = 0;
                     i++;
-                } else {
+                }
+                else {
                     view.lw.setText("Przegrałeś");
                     model.gcrecords[i][0] = 0;
                     model.gcrecords[i][1] = 1;
                     i++;
-
                 }
 
 
                 if (i==model.repeats){
                     view.button1.setEnabled(false);
                     view.button2.setEnabled(false);
-                    //model.takeWinner();
+                    view.showWinner(model.takeWinner());
                 }
             }
         };
@@ -145,6 +144,9 @@ public class PrzedszkolakController extends GraczController {
                             restart();
                         break;
                     }
+                }
+                if (model.playedGames==model.repeats){
+                    view.showWinner(model.takeWinner());
                 }
             }
         }

@@ -4,5 +4,5 @@ public abstract class GraczController {
 
     public void gameKNP(){}
 
-    public void gameDeer(){};
+    public void gameDeer(){}
 }

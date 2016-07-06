@@ -6,14 +6,14 @@ public class Przedszkolak extends Gracz {
         name = s;
         surname=ss;
         allowedTime=2;
+        gcmax=2;
+        gcmin=1;
     }
     public void setResultsTable(){
         gcrecords=new int[repeats+1][2];
     }
 
     public void gameXO(){
-        gcmax=2;
-        gcmin=1;
         freecell=9;
         moveMaked=false;
         endGame=false;
@@ -31,10 +31,9 @@ public class Przedszkolak extends Gracz {
         int com = 0;
         int randomTry[];
         randomTry = new int[9];
-        int tryN = 0;
         int flag = 0;
         int len = 0;
-        int enemyMayWinFlag, compMayWinFlag = 0;
+        int enemyMayWinFlag;
         //check try not to lose strategy
         if (!moveMaked){
             for (int i = 0; i < 8; i++) {
@@ -99,6 +98,7 @@ public class Przedszkolak extends Gracz {
                 else
                     selectedWinCombo=10;
                 flag=0;
+                //Strategia "Remis. Niema o czym mysleć"
                 if(len>8 &&  !moveMaked){
                     int flag2=0;
                     while (flag2==0){
@@ -134,19 +134,19 @@ public class Przedszkolak extends Gracz {
     }
 
     public String remis() {
-        return ("Przedszkolak");
+        return ("Przedszkolak. Remis");
     }
 
     @Override
     public String niewyplata() {
         payment= gcrecords[repeats][1]*payment;
-        return("Przeciwnik dostaje " + payment);
+        return("Przeciwnik dostaje: " + payment);
     }
 
     @Override
     public String wyplata() {
         payment= gcrecords[repeats][0]*payment;
-        return("Dostajesz " + payment);
+        return("Dostajesz: " + payment);
     }
     
 }

@@ -5,7 +5,6 @@ public class MainFrameController {
     private MainFrameView view;
     Listener gSelect;
     GraczView gamerview;
-
     WindowListener wListen;
 
     public MainFrameController(MainFrame model, MainFrameView view){
@@ -73,8 +72,6 @@ public class MainFrameController {
                 view.frame.setEnabled(false);
                 view.frame.setVisible(false);
             }
-
-
         };
         view.g1.addActionListener(gSelect);
         view.g2.addActionListener(gSelect);
@@ -102,6 +99,7 @@ public class MainFrameController {
                     gamerview=fabrykaWidokow(model.getGamer());
                     GraczController gamercontroller=fabrykaKontolerow(model.getGamer(), gamer, gamerview);
                     gamer.repeats=model.getRepeats();
+                    gamer.payment=model.getCharge();
                     gamer.setResultsTable();
                     model.Gamer=gamer;
 
@@ -126,8 +124,6 @@ public class MainFrameController {
                         gamerview.frameXO.addWindowListener(wListen);
                     }
 
-
-                    //model.Gamer.startGame(model.getGame());
                     view.mainPanel.setVisible(false);
                     view.pan3.setVisible(false);
                     view.pan4.add(view.ex);
@@ -154,7 +150,6 @@ public class MainFrameController {
     }
     
     public class Listener implements ActionListener {
-
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == view.selector1) {
                 view.g1.setSelected(true);
@@ -174,7 +169,6 @@ public class MainFrameController {
                     view.g2.setEnabled(true);
                     view.g3.setEnabled(true);
                 }
-
             }
             if (e.getSource() == view.g1) {
                 if(view.g1.isSelected())
@@ -194,7 +188,4 @@ public class MainFrameController {
             }
         }
     }
-
-
-
 }

@@ -42,9 +42,6 @@ public class UczenView extends PrzedszkolakView {
         pan3.setBackground(Color.white);
         gameWindow.setLayout(new BoxLayout(gameWindow, BoxLayout.Y_AXIS));
         gameWindow.add(mpan);
-        JLabel selN1= new JLabel("");
-        JLabel selN2= new JLabel("");
-        JLabel lw= new JLabel("");
         pan4.add(selN1);
         pan4.add(selN2);
         pan4.add(lw);

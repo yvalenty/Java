@@ -14,38 +14,24 @@ public abstract class Gracz implements Lose, Win {
     int repeats;
     int[][] gcrecords;
     public abstract String getTyp();
-    public String getName() {
-        return name;
-    }
-    public void setPayment(double p) {
-        this.payment=p;
-    }
-    public void setRepeats(int r) {
-        this.repeats=r;
-    }
-    public String getSurname() {
-        return surname;
-    }
-    public void setName(String n){
-        this.name=n;
-    }
-    public void setSurname (String n){
-        this.surname=n;
-    }
 
-
-
-    public void takeWinner(){
+    public String takeWinner(){
+        String result;
         //showResults();
+        for(int i=0; i<repeats;i++){
+            gcrecords[repeats][0]+=gcrecords[i][0];
+            gcrecords[repeats][1]+=gcrecords[i][1];
+        }
         if(gcrecords[repeats][0]> gcrecords[repeats][1]){
-            congratulate();
+            result=congratulate() + "\n" + wyplata();
         }
         else if(gcrecords[repeats][0]< gcrecords[repeats][1]){
-            laugh();
+            result=laugh() + "\n" + niewyplata();
         }
         else
-            remis();
-  };
+            result=remis();
+        return result;
+  }
 
     public abstract void setResultsTable();
 

@@ -9,13 +9,15 @@ public abstract class GraczView {
 
     public abstract void gameCoin();
 
-    public abstract void endGame(String wygrales);
+    public abstract void endGame(String n);
 
     public abstract void gameXO();
 
     public void gameKNP(){}
 
     public void gameDeer(){}
+
+    public abstract void showWinner(String n);
     /*public void showResults(){
         JTextArea textArea = new JTextArea(6, 18);
         textArea.setText("-----------Wyniki-----------\n" + "Gracz1                Gracz2\n");

@@ -1,9 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-
 public class Uczen extends Przedszkolak {
     
     public Uczen(String s, String ss) {
@@ -32,6 +26,6 @@ public class Uczen extends Przedszkolak {
     }
     @Override
     public String remis() {
-        return ("Uczeń");
+        return ("Uczeń. Remis");
     }
 }

@@ -3,11 +3,9 @@ import java.awt.*;
 
 
 public class PrzedszkolakView extends GraczView {
-    //Elementy dla gameCoin
     JPanel mpan, pan1, pan2, pan3, pan4;
     ImageIcon imageIcon, imageIcon2;
     JLabel picLabel, picLabel2;
-    //Elementy dla dla gameXO
     JPanel mainPanel;
 
     public void gameCoin(){
@@ -65,6 +63,10 @@ public class PrzedszkolakView extends GraczView {
     }
 
     public void endGame(String n){
+        JOptionPane.showMessageDialog(null, n);
+    }
+
+    public void showWinner(String n){
         JOptionPane.showMessageDialog(null, n);
     }
 }
