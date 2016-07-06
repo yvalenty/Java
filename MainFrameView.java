@@ -102,6 +102,7 @@ public class MainFrameView {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         pan4 = new JPanel();
+        pan4.setBackground(Color.WHITE);
         ex=new JButton("Back");
 
     }
