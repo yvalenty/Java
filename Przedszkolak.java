@@ -67,11 +67,9 @@ public class Przedszkolak extends Gracz {
                         for (int k = 0; k < 9; k++) {
                             if (randomTry[k] == com)
                                 break;
-                            else {
-                                flag = 1;
-                                randomTry[len] = com;
-                                len++;
-                            }
+                            flag = 1;
+                            randomTry[len] = com;
+                            len++;
                         }
                     }
                     selectedWinCombo=com;

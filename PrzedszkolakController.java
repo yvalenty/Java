@@ -131,24 +131,24 @@ public class PrzedszkolakController extends GraczController {
                             restart();
                         break;
                     }
-                    if (model.freecell == 0) {
-                        for (int k = 0; k < 9; k++) {
-                            view.buttons[k].setEnabled(false);
-                        }
-                        model.endGame = true;
-                        view.endGame("Remis");
-                        model.gcrecords[model.playedGames][0] = 0;
-                        model.gcrecords[model.playedGames][1] = 0;
-                        model.playedGames++;
-                        if(model.playedGames<model.repeats)
-                            restart();
-                        break;
-                    }
                 }
-                if (model.playedGames==model.repeats){
-                    view.showWinner(model.takeWinner());
-                }
+
             }
+        }
+        if (model.freecell == 0 && !model.endGame) {
+            for (int k = 0; k < 9; k++) {
+                view.buttons[k].setEnabled(false);
+            }
+            model.endGame = true;
+            view.endGame("Remis");
+            model.gcrecords[model.playedGames][0] = 0;
+            model.gcrecords[model.playedGames][1] = 0;
+            model.playedGames++;
+            if(model.playedGames<model.repeats)
+                restart();
+        }
+        if (model.playedGames==model.repeats){
+            view.showWinner(model.takeWinner());
         }
     }
 
