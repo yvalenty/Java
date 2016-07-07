@@ -79,7 +79,6 @@ public class MainFrameController {
         view.g3.addActionListener(gSelect);
         view.g4.addActionListener(gSelect);
         view.selector1.addActionListener(gSelect);
-        //Exit pressed
         view.exi.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
